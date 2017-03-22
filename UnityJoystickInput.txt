@@ -1,0 +1,53 @@
+Unity对于XBOX手柄并没有做专门的适配方案，所以需要自己去设置一下。
+Edit->ProjectSetting->Input
+自己添加按键
+
+对应Bool值按键修改Positive Button属性的值，Type属性为Key or Mouse Button
+
+A	: joystick button 0
+B	: joystick button 1
+X	: joystick button 2
+Y	: joystick button 3
+LB	: joystick button 4
+RB	: joystick button 5
+pause	: joystick button 6
+start	: joystick button 7
+LS(按下): joystick button 8
+RS(按下): joystick button 9
+
+以上按键传回的是Bool变量，但是还有float的需要修改Axis属性的值，Type属性为joystick Axis
+
+LS_x	:X axis
+LS_y	:Y axis
+RS_x	:4th axis(joysticks)
+Rs_y	:5th axis(joysticks)
+DPAD_x	:6th axis(joysticks)
+DPAD_y	:7th axis(joysticks)
+LT	:9th axis(joysticks)
+RT	:10th axis(joysticks)
+
+每个属性对应一个摇杆的一个方向，居中时为0，判断方向时只需要判断float是否大于0
+
+获取操作只需要：
+
+bool参数
+if(Input.GetKey("A")){
+	debug.log("按键A被按下");
+}	
+
+float参数
+if(Input.GetAxis("LS_x")>0){
+	debug.log("左摇杆向左");
+}else if(Input.GetAxis("LS_x")<0){
+	debug.log("左摇杆向右")；
+}
+
+
+
+
+不做设置的话，需要直接代码获取KeyCode类
+KeyCode.Joystick1Button		//Joystick1Button0是指一号接入手柄 
+
+
+
+在输入设置中也有关于Joy Num的属性，用来区分多人游戏时的1P和2P
